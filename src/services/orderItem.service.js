@@ -5,7 +5,7 @@ exports.createOrderItem = (data) => {
 };
 
 exports.deleteOrderItemById = (id) => {
-  return db.OrderItem.destroy(id);
+  return db.OrderItem.destroy({ where: { orderId: id } });
 };
 
 exports.findOrederItems = (orderId) => {

@@ -35,7 +35,10 @@ exports.addProduct = async (req, res) => {
   try {
     logger.info("Product added.");
     const { name, price, stock, description, category } = req.body;
-    const image = req.file?.filename;
+    let image;
+    if (req.file) {
+      image = `${process.env.BASE_URL}/public/${req.file.filename}`;
+    }
     const product = await createProduct({
       name,
       image,

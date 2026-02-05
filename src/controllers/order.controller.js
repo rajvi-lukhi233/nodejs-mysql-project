@@ -1,12 +1,11 @@
 const {
-  create,
   findAllOrders,
   updateById,
-  deleteById,
   findOrderById,
   findOrderByUser,
   createOrder,
   findOrder,
+  deleteOrderById,
 } = require("../services/order.service");
 const {
   createOrderItem,
@@ -88,13 +87,13 @@ exports.updateOrder = async (req, res) => {
     const { products, city, state, country, zipCode, address } = req.body;
     const { userId } = req.user;
     let totalAmount = 0;
-    const order = await findOrderById(orderId);
+    const order = await findOrder({ id: orderId }, ["id"]);
     if (!order) {
       return errorResponse(res, 404, "Order not found.");
     }
     if (products) {
       for (item of products) {
-        await deleteOrderItemById(orderId);
+        const deleteItem = await deleteOrderItemById(orderId);
         const product = await findProductById(item.productId);
         if (!product) {
           return errorResponse(
@@ -144,11 +143,11 @@ exports.deleteOrder = async (req, res) => {
   try {
     logger.info("Orderes deleted.");
     const { orderId } = req.params;
-    const order = await findOrder(orderId, ["id"]);
+    const order = await findOrder({ id: orderId }, ["id"]);
     if (!order) {
       return errorResponse(res, 404, "Order not found.");
     }
-    await deleteById(orderId);
+    await deleteOrderById(orderId);
     await deleteOrderItemById(orderId);
     return successResponse(res, 200, "Order deleted successfully.");
   } catch (error) {

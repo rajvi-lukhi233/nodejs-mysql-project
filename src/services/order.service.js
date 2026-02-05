@@ -1,6 +1,6 @@
 const { fn, col } = require("sequelize");
 const db = require("../models");
-const { DB_NAME, ROLE } = require("../utils/constant");
+const { ROLE } = require("../utils/constant");
 
 exports.createOrder = (data) => {
   return db.Order.create(data);
@@ -56,8 +56,8 @@ exports.updateById = (data, where) => {
   return db.Order.update(data, { where });
 };
 
-exports.deleteById = (id) => {
-  return db.Order.destroy(id);
+exports.deleteOrderById = (id) => {
+  return db.Order.destroy({ where: { id } });
 };
 
 exports.findOrderByUser = () => {

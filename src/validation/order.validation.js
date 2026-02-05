@@ -18,10 +18,7 @@ exports.createOrderSchemaValidation = joi.object({
 });
 
 exports.updateOrderSchemaValidation = joi.object({
-  orderId: joi
-    .string()
-    .pattern(/^[0-9a-fA-F]{24}$/)
-    .required(),
+  orderId: joi.string().required(),
   products: joi
     .array()
     .items(
