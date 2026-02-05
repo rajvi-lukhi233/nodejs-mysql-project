@@ -62,13 +62,13 @@ exports.deleteOrderById = (id) => {
 
 exports.findOrderByUser = () => {
   return db.Order.findAll({
-    attributes: ["userId", [fn("COUNT", col("Orders.id")), "totalOrders"]],
+    attributes: ["userId", [fn("COUNT", col("orders.id")), "totalOrders"]],
     include: [
       {
         model: db.User,
-        attributes: ["name"],
+        attributes: ["name", "id"],
       },
     ],
-    group: ["userId"],
+    group: ["userId", "user.id"],
   });
 };
