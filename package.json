@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +19,19 @@
   "bugs": {
     "url": "https://github.com/rajvi-lukhi233/nodejs-mysql-project/issues"
   },
-  "homepage": "https://github.com/rajvi-lukhi233/nodejs-mysql-project#readme"
+  "homepage": "https://github.com/rajvi-lukhi233/nodejs-mysql-project#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "joi": "^18.0.2",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.0.2",
+    "mysql2": "^3.16.3",
+    "nodemon": "^3.1.11",
+    "sequelize": "^6.37.7",
+    "stripe": "^20.3.0",
+    "winston": "^3.19.0"
+  }
 }
